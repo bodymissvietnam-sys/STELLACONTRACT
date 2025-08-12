@@ -21,9 +21,9 @@
         /* CSS cho phần hiển thị hợp đồng */
         #contractContent {
             background-color: white;
-            line-height: 1.5;
+            line-height: 1.6;
             font-family: 'Times New Roman', Times, serif;
-            font-size: 14pt;
+            font-size: 13pt;
         }
         #contractContent table {
             width: 100%;
@@ -54,15 +54,22 @@
             body * {
                 visibility: hidden;
             }
-            #contractContent, #contractContent * {
+            #outputContainer, #outputContainer * {
                 visibility: visible;
             }
-            #contractContent {
+            #outputContainer {
                 position: absolute;
                 left: 0;
                 top: 0;
                 width: 100%;
+                height: auto;
+                box-shadow: none;
+                border: none;
             }
+             #contractContent {
+                max-height: none;
+                overflow: visible;
+             }
         }
     </style>
 </head>
@@ -83,17 +90,17 @@
                     <fieldset class="border p-4 rounded-lg">
                         <legend class="px-2 font-semibold text-lg">Bên A (Công ty)</legend>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
-                            <div class="sm:col-span-2">
+                           <div class="sm:col-span-2">
                                 <label for="benA_ten" class="block text-sm font-medium text-gray-700">Tên công ty</label>
                                 <input type="text" id="benA_ten" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="CÔNG TY TNHH ĐỘNG HỌC STELLA">
                             </div>
                             <div class="sm:col-span-2">
                                 <label for="benA_diaChi" class="block text-sm font-medium text-gray-700">Địa chỉ</label>
-                                <input type="text" id="benA_diaChi" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="9/11 Nguyễn Huy Tưởng, Phường Gia Định, Thành phố Hồ Chí Minh">
+                                <input type="text" id="benA_diaChi" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="9/11 Nguyễn Huy Tưởng, Phường 6, Quận Bình Thạnh, Thành phố Hồ Chí Minh">
                             </div>
-                             <div>
+                            <div>
                                 <label for="benA_mst" class="block text-sm font-medium text-gray-700">Mã số thuế</label>
-                                <input type="text" id="benA_mst" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="0309391133">
+                                <input type="text" id="benA_mst" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="0314421133">
                             </div>
                             <div>
                                 <label for="benA_nguoiDaiDien" class="block text-sm font-medium text-gray-700">Người đại diện</label>
@@ -128,20 +135,25 @@
                             </div>
                              <div>
                                 <label for="benB_mst" class="block text-sm font-medium text-gray-700">Mã số thuế cá nhân</label>
-                                <input type="text" id="benB_mst" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="VD: 040202012030">
+                                 <input type="text" id="benB_mst" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="VD: 040202012030">
                             </div>
                              <div>
                                 <label for="benB_stk" class="block text-sm font-medium text-gray-700">Số tài khoản</label>
                                 <input type="text" id="benB_stk" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="VD: 3720021903">
                             </div>
+                            <!-- THAY ĐỔI: Thêm trường Ngân hàng thụ hưởng -->
                             <div>
+                                <label for="benB_nganHang" class="block text-sm font-medium text-gray-700">Ngân hàng thụ hưởng</label>
+                                <input type="text" id="benB_nganHang" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="VD: VIETCOMBANK">
+                            </div>
+                            <div class="sm:col-span-2">
                                 <label for="benB_nguoiThuHuong" class="block text-sm font-medium text-gray-700">Người thụ hưởng</label>
                                 <input type="text" id="benB_nguoiThuHuong" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="VD: MAI TIEN LAM">
                             </div>
                         </div>
                     </fieldset>
 
-                    <!-- Chi tiết hợp đồng -->
+                     <!-- Chi tiết hợp đồng -->
                     <fieldset class="border p-4 rounded-lg">
                         <legend class="px-2 font-semibold text-lg">Nội dung công việc</legend>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
@@ -153,7 +165,7 @@
                                 <label for="ngayKy" class="block text-sm font-medium text-gray-700">Ngày ký hợp đồng</label>
                                 <input type="date" id="ngayKy" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                             </div>
-                             <div>
+                            <div>
                                 <label for="ngayThucHien" class="block text-sm font-medium text-gray-700">Ngày đăng video</label>
                                 <input type="date" id="ngayThucHien" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                             </div>
@@ -175,7 +187,7 @@
                             </div>
                             <div>
                                 <label for="donGia" class="block text-sm font-medium text-gray-700">Đơn giá (VNĐ)</label>
-                                <input type="number" id="donGia" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="VD: 200000">
+                                <input type="number" id="donGia" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="VD: 2000000">
                             </div>
                         </div>
                     </fieldset>
@@ -219,81 +231,87 @@
             
             document.getElementById('ngayKy').valueAsDate = new Date();
             document.getElementById('ngayThucHien').valueAsDate = new Date();
-
-            // --- HÀM ĐỌC SỐ CHÍNH XÁC ---
-            function to_vietnamese_string(number) {
-                const mangso = ['không', 'một', 'hai', 'ba', 'bốn', 'năm', 'sáu', 'bảy', 'tám', 'chín'];
-                function dochangchuc(so, daydu) {
-                    var chuoi = "";
-                    var chuc = Math.floor(so / 10);
-                    var donvi = so % 10;
-                    if (chuc > 1) {
-                        chuoi = " " + mangso[chuc] + " mươi";
-                        if (donvi == 1) {
-                            chuoi += " mốt";
-                        }
-                    } else if (chuc == 1) {
-                        chuoi = " mười";
-                        if (donvi == 1) {
-                            chuoi += " một";
-                        }
-                    } else if (daydu && donvi > 0) {
-                        chuoi = " lẻ";
+            
+            // --- HÀM ĐỔI SỐ THÀNH CHỮ (ĐÃ SỬA LỖI) ---
+            const mangso = ['không', 'một', 'hai', 'ba', 'bốn', 'năm', 'sáu', 'bảy', 'tám', 'chín'];
+            function dochangchuc(so, daydu) {
+                let chuoi = "";
+                let chuc = Math.floor(so / 10);
+                let donvi = so % 10;
+                if (chuc > 1) {
+                    chuoi = " " + mangso[chuc] + " mươi";
+                    if (donvi == 1) {
+                        chuoi += " mốt";
                     }
-                    if (donvi == 5 && chuc > 0) {
+                } else if (chuc == 1) {
+                    chuoi = " mười";
+                    if (donvi == 5) {
                         chuoi += " lăm";
-                    } else if (donvi > 1 || (donvi == 1 && chuc == 0)) {
-                        chuoi += " " + mangso[donvi];
                     }
-                    return chuoi;
+                } else if (daydu && donvi > 0) {
+                    chuoi = " lẻ";
                 }
-                function docblock(so, daydu) {
-                    var chuoi = "";
-                    var tram = Math.floor(so / 100);
-                    so = so % 100;
-                    if (daydu || tram > 0) {
-                        chuoi = " " + mangso[tram] + " trăm";
-                        chuoi += dochangchuc(so, true);
-                    } else {
-                        chuoi = dochangchuc(so, false);
-                    }
-                    return chuoi;
+                if (donvi == 5 && chuc > 1) {
+                    chuoi += " lăm";
+                } else if (donvi > 0 && donvi != 1 && donvi != 5) {
+                    chuoi += " " + mangso[donvi];
+                } else if (donvi == 1 && chuc < 1) {
+                    chuoi += " " + mangso[donvi];
                 }
-                function dochangtrieu(so, daydu) {
-                    var chuoi = "";
-                    var trieu = Math.floor(so / 1000000);
-                    so = so % 1000000;
-                    if (trieu > 0) {
-                        chuoi = docblock(trieu, daydu) + " triệu";
-                        daydu = true;
-                    }
-                    var nghin = Math.floor(so / 1000);
-                    so = so % 1000;
-                    if (nghin > 0) {
-                        chuoi += docblock(nghin, daydu) + " nghìn";
-                        daydu = true;
-                    }
-                    if (so > 0) {
-                        chuoi += docblock(so, daydu);
-                    }
-                    return chuoi;
+                return chuoi;
+            }
+
+            function dochangtram(so, daydu) {
+                let chuoi = "";
+                let tram = Math.floor(so / 100);
+                so = so % 100;
+                if (daydu || tram > 0) {
+                    chuoi = " " + mangso[tram] + " trăm";
+                    chuoi += dochangchuc(so, true);
+                } else {
+                    chuoi = dochangchuc(so, false);
                 }
-                if (number == 0) return mangso[0];
-                var chuoi = "", hauto = "";
+                return chuoi;
+            }
+
+            function dochangtrieu(so, daydu) {
+                let chuoi = "";
+                let trieu = Math.floor(so / 1000000);
+                so = so % 1000000;
+                if (trieu > 0) {
+                    chuoi = dochangtram(trieu, daydu) + " triệu";
+                    daydu = true;
+                }
+                let nghin = Math.floor(so / 1000);
+                so = so % 1000;
+                if (nghin > 0) {
+                    chuoi += dochangtram(nghin, daydu) + " nghìn";
+                    daydu = true;
+                }
+                if (so > 0) {
+                    chuoi += dochangtram(so, daydu);
+                }
+                return chuoi;
+            }
+
+            function to_vietnamese_string(so) {
+                if (so == 0) return mangso[0].charAt(0).toUpperCase() + mangso[0].slice(1);
+                let chuoi = "", hauto = "";
                 do {
-                    var ty = number % 1000000000;
-                    number = Math.floor(number / 1000000000);
-                    if (number > 0) {
+                    let ty = so % 1000000000;
+                    so = Math.floor(so / 1000000000);
+                    if (so > 0) {
                         chuoi = dochangtrieu(ty, true) + hauto + chuoi;
                     } else {
                         chuoi = dochangtrieu(ty, false) + hauto + chuoi;
                     }
                     hauto = " tỷ";
-                } while (number > 0);
-                let result = chuoi.trim();
-                return result.charAt(0).toUpperCase() + result.slice(1);
+                } while (so > 0);
+                
+                let finalString = chuoi.trim();
+                return finalString.charAt(0).toUpperCase() + finalString.slice(1);
             }
-            // --- KẾT THÚC HÀM ĐỌC SỐ ---
+            // --- KẾT THÚC HÀM ĐỔI SỐ THÀNH CHỮ ---
 
 
             contractForm.addEventListener('submit', function (event) {
@@ -317,6 +335,7 @@
                     cccd: getValue('benB_cccd'),
                     mst: getValue('benB_mst'),
                     stk: getValue('benB_stk'),
+                    nganHang: getValue('benB_nganHang'),
                     nguoiThuHuong: getValue('benB_nguoiThuHuong')
                 };
 
@@ -328,9 +347,9 @@
                 const linkKenh = getValue('linkKenh');
                 const soLuong = parseInt(getValue('soLuong'), 10) || 0;
                 const donGia = parseFloat(getValue('donGia')) || 0;
-
                 const tongGiaTri = soLuong * donGia;
-                const tongCong = Math.round(tongGiaTri / 0.91); 
+                
+                const tongCong = Math.round(tongGiaTri / 0.9);
                 const thueTNCN = tongCong - tongGiaTri;
                 const thucTeThanhToan = tongGiaTri;
                 
@@ -378,11 +397,11 @@
                         </tr>
                         <tr>
                             <td>Mã số thuế</td>
-                            <td>: ${benA.mst}</td>
+                             <td>: ${benA.mst}</td>
                         </tr>
                          <tr>
                             <td>Người đại diện</td>
-                            <td>: <span class="bold-text">${benA.nguoiDaiDien.toUpperCase()}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chức vụ: ${benA.chucVu}</td>
+                             <td>: <span class="bold-text">${benA.nguoiDaiDien.toUpperCase()}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chức vụ: ${benA.chucVu}</td>
                         </tr>
                     </table>
                     <p>Và</p>
@@ -410,6 +429,10 @@
                         <tr>
                             <td>Số tài khoản</td>
                             <td>: ${benB.stk}</td>
+                        </tr>
+                        <tr>
+                            <td>Ngân hàng</td>
+                            <td>: ${benB.nganHang.toUpperCase()}</td>
                         </tr>
                          <tr>
                             <td>Người thụ hưởng</td>
@@ -444,11 +467,11 @@
                                 <td style="text-align: right;">${formatCurrency(donGia)}</td>
                             </tr>
                             <tr>
-                                <td colspan="4" class="bold-text">Tổng giá trị hợp đồng</td>
+                                 <td colspan="4" class="bold-text">Tổng giá trị hợp đồng</td>
                                 <td style="text-align: right;" class="bold-text">${formatCurrency(tongGiaTri)}</td>
                             </tr>
                             <tr>
-                                <td colspan="4">Thuế TNCN 9%</td>
+                                <td colspan="4">Thuế TNCN 10%</td>
                                 <td style="text-align: right;">${formatCurrency(thueTNCN)}</td>
                             </tr>
                             <tr>
@@ -470,7 +493,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="center-text">1</td>
+                                 <td class="center-text">1</td>
                                 <td>Demo (video)</td>
                                 <td>Gửi Demo trước từ 3-5 ngày kể từ ngày đăng video</td>
                             </tr>
@@ -489,7 +512,7 @@
                     
                     <p class="bold-text">ĐIỀU 2: GIÁ TRỊ HỢP ĐỒNG VÀ THANH TOÁN</p>
                     <p>2.1. Giá trị và thời gian thanh toán:</p>
-                    <p style="padding-left: 20px;">a. Tổng chi phí cho công việc mà Bên B thực hiện là <b>${formatCurrency(tongCong)} VNĐ</b> <i>(Bằng chữ: ${tongCongChu}.)</i> - Đã bao gồm thuế TNCN (9%)</p>
+                    <p style="padding-left: 20px;">a. Tổng chi phí cho công việc mà Bên B thực hiện là <b>${formatCurrency(tongCong)} VNĐ</b> <i>(Bằng chữ: ${tongCongChu}.)</i> - Đã bao gồm thuế TNCN (10%)</p>
                     <p style="padding-left: 20px;">b. Nghĩa vụ thuế TNCN của Bên B là: <b>${formatCurrency(thueTNCN)} VNĐ</b> <i>(Bằng chữ: ${thueTNCNChu}.)</i> Bên A có trách nhiệm khấu trừ tiền thuế tại nguồn để nộp thuế TNCN cho bên B.</p>
                     <p style="padding-left: 20px;">c. Giá trị Hợp đồng Bên A thực tế thanh toán cho Bên B sau khi đã khấu trừ thuế TNCN cho Bên B là: <b>${formatCurrency(thucTeThanhToan)} VNĐ</b> <i>(Bằng chữ: ${thucTeThanhToanChu}).</i></p>
                     <p style="padding-left: 20px;">d. Trong quá trình thực hiện Hợp đồng, nếu có phát sinh bất kỳ khoản chi phí nào ngoài giá trị Hợp đồng nêu trên, Bên B phải thông báo ngay lập tức cho Bên A và chỉ thực hiện phần công việc phát sinh chi phí đó khi nhận được sự đồng ý bằng văn bản của Bên A. Bên A không có trách nhiệm thanh toán cho Bên B bất kỳ khoản chi phí nào được triển khai khi chưa nhận được sự chấp thuận của Bên A.</p>
@@ -539,7 +562,7 @@
                             <td class="center-text bold-text" style="width: 50%;">ĐẠI DIỆN BÊN A</td>
                             <td class="center-text bold-text" style="width: 50%;">ĐẠI DIỆN BÊN B</td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td class="center-text">(${benA.chucVu})</td>
                             <td class="center-text"></td>
                         </tr>
@@ -550,18 +573,7 @@
                         </tr>
                     </table>
                 `;
-
                 contractContent.innerHTML = contractHTML;
-                
-                // --- ĐÃ SỬA: THÊM ĐOẠN MÃ NÀY ĐỂ ÉP KIỂU DÃN DÒNG KHI SAO CHÉP ---
-                // Áp dụng inline style cho tất cả các thẻ p, h2, và td bên trong nội dung hợp đồng
-                // để đảm bảo khoảng cách dòng là 1.5 khi sao chép qua Word/Docs.
-                const elementsToStyle = contractContent.querySelectorAll('p, h2, td, th');
-                elementsToStyle.forEach(el => {
-                    el.style.lineHeight = '1.5';
-                });
-                // --- KẾT THÚC ĐOẠN MÃ SỬA ---
-
                 outputContainer.classList.remove('hidden');
             });
 
@@ -587,7 +599,6 @@
                 }
                 
                 window.getSelection().removeAllRanges();
-                
                 setTimeout(() => {
                     copyMessage.classList.add('hidden');
                 }, 3000);
